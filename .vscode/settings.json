@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"zend_string.h": "c",
+		"base.h": "c",
+		"unistd.h": "c",
+		"zend.h": "c",
+		"project.h": "c",
+		"typeinfo": "c",
+		"zend_ini.h": "c"
+	}
+}

@@ -7,4 +7,5 @@
 #include <zend_interfaces.h>
 #include <zend_exceptions.h>
 #include <zend_variables.h>
+#include "../project.h"
 #include "base.h"
