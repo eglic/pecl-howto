@@ -17,3 +17,28 @@
 | config.m4              |          | 每个扩展都必须的入口                        |
 | project.h              |          | 项目配置宏定义                              |
 | main.c                 |          | 扩展的主程序                                |
+
+## 怎么用
+
+``` 
+howto use howto
+```
+## 开发构建
+```bash
+phpize && ./configure;
+make && sudo make install;
+php test/all.php;
+```
+
+## 发布构建
+本地得有 docker
+```bash
+./dist/
+```
+
+## 小问题
+
+ Q: 构建完了目录下文件好乱怎么办
+```bash
+make clean && phpize --clean
+```

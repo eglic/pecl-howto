@@ -1,5 +1,5 @@
 #include "base.h"
 
-ZEND_MODULE_INFO_D(HowTo) {
-	
-}
+ZEND_MODULE_INFO_D(HowTo) { 
+	return SUCCESS;
+ }
