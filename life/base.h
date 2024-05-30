@@ -9,6 +9,8 @@ typedef struct {
 extern project_global_storage project_globals;
 #define _HTG(v) project_globals.v
 
+// 看，这就是 clang-foramt 格式后的丑样
+// 凑合看吧
 #define PROJECT_INI_ENTRY(name, default_value, on_modify, property_name)       \
   ZEND_INI_ENTRY2(PROJECT_INI_PREFIX name, default_value, ZEND_INI_SYSTEM,     \
                   on_modify,                                                   \
@@ -28,9 +30,8 @@ void zm_globals_dtor_HowTo(void *raw);
 
 //下面这个是 ZEND_MODULE_STARTUP_D(HowTo) 的影分身
 //  分开原因看 main.c
-zend_result zm_real_startup_MonoPHP(const zend_ini_entry_def *ini_entry, INIT_FUNC_ARGS);
-
-
+zend_result zm_real_startup_HowTo(const zend_ini_entry_def *ini_entry,
+                                  INIT_FUNC_ARGS);
 
 #define ZEND_TYPE_REGISTER_N(tn) __reg_howto_##tn
 #define ZEND_TYPE_REGISTER_D(tn) void __reg_howto_##tn(int module_number)

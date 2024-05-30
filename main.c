@@ -16,6 +16,7 @@ project_global_storage project_globals;
 #include "inis.c"
 
 // [4] 注册全局的，暴露给PHP的函数
+//    下面的 clang-format off 千万别删，会很丑！！！
 // clang-format off
 static const zend_function_entry HowTo_function_entrties[] = {
     ZEND_FE_END

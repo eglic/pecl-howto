@@ -14,6 +14,7 @@
 |                        | base.h   | 各种好用的宏                                |
 |                        | class.h  | 实现类常用的宏                              |
 |                        | enum.h   | 实现枚举常用的宏                            |
+| [test](test/README.md) |          | 按自己喜好来准备用例                        |
 | config.m4              |          | 每个扩展都必须的入口                        |
 | project.h              |          | 项目配置宏定义                              |
 | main.c                 |          | 扩展的主程序                                |
