@@ -1,0 +1,10 @@
+#pragma once
+#include <php.h>
+#include <zend_types.h>
+#include <zend_string.h>
+#include <zend_hash.h>
+#include <zend_objects.h>
+#include <zend_interfaces.h>
+#include <zend_exceptions.h>
+#include <zend_variables.h>
+#include "base.h"
