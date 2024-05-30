@@ -39,3 +39,7 @@ foreach ([null, false, true, 0, 1, 0.0, 1.1, 1.0e5, 1.1e-10, 2.3e-12, '', ' ', "
 		(ht_empty($v) ? 'yes' : 'no')
 	);
 }
+
+echo "----------------------------------------------------------------------------\n";
+printf("   global constant __HT_VERSION__ = %s\n",__HT_VERSION__);
+printf("namespace constant HT\\__VERSION__ = %s\n",HT\__VERSION__);

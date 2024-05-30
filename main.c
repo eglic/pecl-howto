@@ -67,6 +67,6 @@ ZEND_GET_MODULE(HowTo);
 //     因为 ini_entries 这个是 static 定义在本文件里面的
 //     拿到别的地方访问不到 ini 的配置项
 ZEND_MODULE_STARTUP_D(HowTo) {
-
+    kdebug("原神，启动！");
     return zm_real_startup_HowTo(ini_entries, INIT_FUNC_ARGS_PASSTHRU);
 }
