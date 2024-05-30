@@ -1,6 +1,7 @@
 #include "project.h"
-#include "core/zend.h"
+#include "base/zend.h"
 #include "life/base.h"
+#include "type/base.h"
 
 // [1] 声明全局变量
 project_global_storage project_globals;
@@ -19,6 +20,8 @@ project_global_storage project_globals;
 //    下面的 clang-format off 千万别删，会很丑！！！
 // clang-format off
 static const zend_function_entry HowTo_function_entrties[] = {
+    ZEND_FE(ht_empty              , ARG_INFO_HT_EMPTY)
+    ZEND_FE(ht_ztype              , ARG_INFO_HT_ZTYPE)
     ZEND_FE_END
 };
 
@@ -39,24 +42,23 @@ static const zend_module_dep HowTo_depends[] = {
 // clang-format on
 
 // [5] 定义扩展的本体
-zend_module_entry HowTo_module_entry = {
-    STANDARD_MODULE_HEADER_EX,
-    ini_entries,                     /* ini */
-    HowTo_depends,                   /* depends */
-    PROJECT_NAME_STR,                /* name */
-    HowTo_function_entrties,         /* APIS */
-    ZEND_MODULE_STARTUP_N(HowTo),    /* MINIT */
-    ZEND_MODULE_SHUTDOWN_N(HowTo),   /* MSHUTDOWN */
-    ZEND_MODULE_ACTIVATE_N(HowTo),   /* RINIT */
-    ZEND_MODULE_DEACTIVATE_N(HowTo), /* RSHUTDOWN */
-    ZEND_MODULE_INFO_N(HowTo),       /* phpinfo */
-    PROJECT_VERSION_STR,             /* version */
-    sizeof(project_global_storage),  /* global size */
-    &project_globals,                /* global data */
-    zm_globals_ctor_HowTo,           /* global ctor */
-    zm_globals_dtor_HowTo,           /* global dtor  */
-    NULL,
-    STANDARD_MODULE_PROPERTIES_EX};
+zend_module_entry HowTo_module_entry = {STANDARD_MODULE_HEADER_EX,
+                                        ini_entries,                     /* ini */
+                                        HowTo_depends,                   /* depends */
+                                        PROJECT_NAME_STR,                /* name */
+                                        HowTo_function_entrties,         /* APIS */
+                                        ZEND_MODULE_STARTUP_N(HowTo),    /* MINIT */
+                                        ZEND_MODULE_SHUTDOWN_N(HowTo),   /* MSHUTDOWN */
+                                        ZEND_MODULE_ACTIVATE_N(HowTo),   /* RINIT */
+                                        ZEND_MODULE_DEACTIVATE_N(HowTo), /* RSHUTDOWN */
+                                        ZEND_MODULE_INFO_N(HowTo),       /* phpinfo */
+                                        PROJECT_VERSION_STR,             /* version */
+                                        sizeof(project_global_storage),  /* global size */
+                                        &project_globals,                /* global data */
+                                        zm_globals_ctor_HowTo,           /* global ctor */
+                                        zm_globals_dtor_HowTo,           /* global dtor  */
+                                        NULL,
+                                        STANDARD_MODULE_PROPERTIES_EX};
 
 // [6] 扩展必须的导出函数
 ZEND_GET_MODULE(HowTo);
@@ -66,5 +68,5 @@ ZEND_GET_MODULE(HowTo);
 //     拿到别的地方访问不到 ini 的配置项
 ZEND_MODULE_STARTUP_D(HowTo) {
 
-  return zm_real_startup_HowTo(ini_entries, INIT_FUNC_ARGS_PASSTHRU);
+    return zm_real_startup_HowTo(ini_entries, INIT_FUNC_ARGS_PASSTHRU);
 }

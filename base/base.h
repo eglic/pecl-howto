@@ -21,3 +21,5 @@
 #include <net/if.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#define NSTR_IS_ASCII_SPACE(c) (c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\b' || c == '\v')

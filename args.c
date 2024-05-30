@@ -1,1 +1,12 @@
 #pragma once
+#include "base/zend.h"
+
+// clang-format off
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO(ARG_INFO_HT_EMPTY, _IS_BOOL, false)
+	ZEND_ARG_INFO(false, val)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO(ARG_INFO_HT_ZTYPE, IS_STRING, false)
+	ZEND_ARG_INFO(false, val)
+ZEND_END_ARG_INFO()

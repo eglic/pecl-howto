@@ -6,6 +6,38 @@
 		"zend.h": "c",
 		"project.h": "c",
 		"typeinfo": "c",
-		"zend_ini.h": "c"
-	}
+		"zend_ini.h": "c",
+		"stdbool.h": "c"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.libs": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/autom4te.cache": true,
+		"**/build": true,
+		"**/modules": true,
+		"**/include": true,
+		"**/*.dep": true,
+		"**/*.o": true,
+		"**/*.lo": true,
+		"**/*.la": true,
+		"**/*.loT": true,
+		"**/libtool": true,
+		"**/run-tests.php": true,
+		"**/config.h.in*": true,
+		"**/config.nice": true,
+		"**/config.status": true,
+		"**/configure*": true,
+	},
+	"C_Cpp.codeAnalysis.clangTidy.checks.disabled": [],
+	"C_Cpp.codeAnalysis.clangTidy.args": [
+		"-D__EMMINTRIN_H"
+	],
+	"C_Cpp.clang_format_path": "/usr/bin/clang-format",
+	"C_Cpp.clang_format_fallbackStyle": "Microsoft",
+	"C_Cpp.clang_format_style": "file"
 }

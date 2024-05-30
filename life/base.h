@@ -1,6 +1,6 @@
 #pragma once
 #include "../project.h"
-#include "../core/zend.h"
+#include "../base/zend.h"
 
 typedef struct {
   bool enable;
