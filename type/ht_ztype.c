@@ -19,5 +19,14 @@ PHP_FUNCTION(ht_ztype) {
         //跟 null 区分开
         RETURN_STRING("nil");
     }
-    RETURN_STRING(zend_zval_type_name(val));
+    switch (Z_TYPE_P(val)) {
+    case IS_NULL:
+        RETURN_STRING("null");
+    case IS_FALSE: //默认的 zend_zval_type_name 会识别成 bool , 对于调试没有帮助
+        RETURN_STRING("false");
+    case IS_TRUE: //默认的 zend_zval_type_name 会识别成 bool , 对于调试没有帮助
+        RETURN_STRING("true");
+    default:
+        RETURN_STRING(zend_zval_type_name(val));
+    }
 }

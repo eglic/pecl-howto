@@ -34,26 +34,32 @@ PHP_FUNCTION(ht_empty) {
     if (val == NULL)
         RETURN_TRUE;
 
-    //传的是未初始化成员或者 null
+    // [1] 两种间接类型先处理
+    if (Z_TYPE_P(val) == IS_INDIRECT)
+        val = Z_INDIRECT_P(val);
+    else if (Z_TYPE_P(val) == IS_REFERENCE)
+        val = Z_REFVAL_P(val);
+
+    // [2] 传的是未初始化成员或者 null
     if (Z_TYPE_P(val) == IS_UNDEF || Z_TYPE_P(val) == IS_NULL)
         RETURN_TRUE;
 
-    // 将 false 判定为空
+    // [3] 将 false 判定为空
     if (Z_TYPE_P(val) == IS_FALSE)
         RETURN_TRUE;
 
-    // 将 true 判断为非空
+    // [4] 将 true 判断为非空
     if (Z_TYPE_P(val) == IS_TRUE)
         RETURN_FALSE;
 
-    //将 int 型的非零值判定为非空，零判断为空
+    // [5] 将 int 型的非零值判定为非空，零判断为空
     if (Z_TYPE_P(val) == IS_LONG) {
         if (Z_LVAL_P(val) == 0)
             RETURN_TRUE;
         RETURN_FALSE;
     }
 
-    //将很小的 double 判定为空
+    // [6] 将很小的 double 判定为空
     if (Z_TYPE_P(val) == IS_DOUBLE) {
         // double类型与 0.0 难以比较
         //与 0.0 的差值小于 10亿分之1
@@ -62,7 +68,7 @@ PHP_FUNCTION(ht_empty) {
         RETURN_FALSE;
     }
 
-    // string 类型判定
+    // [7] string 类型判定
     //长度 < 1 空
     //全部是 空白字符串 空
     if (Z_TYPE_P(val) == IS_STRING) {
@@ -78,17 +84,13 @@ PHP_FUNCTION(ht_empty) {
         RETURN_TRUE;
     }
 
-    //三种不同场景的特殊类型
-    if (Z_TYPE_P(val) == IS_INDIRECT)
-        val = Z_INDIRECT_P(val);
-    else if (Z_TYPE_P(val) == IS_REFERENCE)
-        val = Z_REFVAL_P(val);
-    else if (Z_TYPE_P(val) == IS_PTR)
+    // [8] 两种内部类型不好判断，草草了之
+    if (Z_TYPE_P(val) == IS_PTR)
         RETURN_FALSE;
     else if (Z_TYPE_P(val) == IS_RESOURCE)
         RETURN_FALSE;
 
-    // array 类型判定
+    // [9] array 类型判定
     if (Z_TYPE_P(val) == IS_ARRAY) {
         //数组有个特殊的值，PHP代码里敲一对 [] ，底层就是这个
         if (Z_ARR_P(val) == &zend_empty_array)
@@ -99,13 +101,17 @@ PHP_FUNCTION(ht_empty) {
         RETURN_FALSE;
     }
 
-    // object 类型判断
+    // [10] object 类型判断
     // 对一个刚刚 new 出来的 stdClass ，还没设置任何成员的 判断为空
     // 对枚举类型，且后端是 int ，且值等于0的判断为空
     if (Z_TYPE_P(val) == IS_OBJECT) {
         if (Z_OBJCE_P(val) == zend_standard_class_def) {
             // stdClass 是支持动态属性的，与其他类不一样
-            if (Z_OBJ_P(val)->properties == NULL || zend_array_count(Z_OBJ_P(val)->properties) < 1)
+            if (Z_OBJ_P(val)->properties == NULL)
+                RETURN_TRUE;
+            if (Z_OBJ_P(val)->properties == &zend_empty_array)
+                RETURN_TRUE;
+            if (zend_array_count(Z_OBJ_P(val)->properties) < 1)
                 RETURN_TRUE;
             RETURN_FALSE;
         }
@@ -120,6 +126,6 @@ PHP_FUNCTION(ht_empty) {
         RETURN_FALSE;
     }
 
-    //其它没见过的，都当非空
+    // [11] 其它没见过的，都当非空
     RETURN_FALSE;
 }
