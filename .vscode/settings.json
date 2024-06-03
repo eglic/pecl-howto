@@ -39,5 +39,17 @@
 	],
 	"C_Cpp.clang_format_path": "/usr/bin/clang-format",
 	"C_Cpp.clang_format_fallbackStyle": "Microsoft",
-	"C_Cpp.clang_format_style": "file"
+	"C_Cpp.clang_format_style": "file",
+	"C_Cpp.default.cStandard": "gnu11",
+	"C_Cpp.default.includePath": [
+		"/usr/include",
+		"/usr/include/x86_64-linux-gnu",
+		"/usr/lib/gcc/x86_64-linux-gnu/13/include",
+		"/opt/lnmp/include",
+		"/opt/lnmp/include/php",
+		"/opt/lnmp/include/Zend",
+		"/opt/lnmp/include/main",
+		"/opt/lnmp/include/sapi",
+		"/opt/lnmp/include/python3.12"
+	]
 }

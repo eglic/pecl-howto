@@ -46,7 +46,7 @@ dnl +---------------------------------------------------------------------+
 dnl +---------------+
 dnl | 底层代码      |
 dnl +--------------+
-	base/string.c base/debug.c \
+	base/string.c base/object.c base/debug.c \
 	\
 dnl +---------------+
 dnl | 函数定义       |
